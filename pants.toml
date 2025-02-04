@@ -1,0 +1,29 @@
+[GLOBAL]
+pants_version = "2.23.1"
+
+backend_packages.add = [
+  'pants.backend.python',
+  'pants.backend.experimental.python.lint.ruff.check',
+  'pants.backend.experimental.python.lint.ruff.format',
+  'pants.backend.docker',
+]
+
+
+[source]
+# The Python source root is the repo root. See https://www.pantsbuild.org/docs/source-roots.
+root_patterns = ["/", "src", "tests"]
+
+[python]
+interpreter_constraints = ["==3.12.8"]
+enable_resolves = true
+resolves = { python-default = "python.lock" }
+
+[python-bootstrap]
+search_path = ["<PATH>", "<PYENV>"]
+
+[python-infer]
+string_imports = true
+use_rust_parser = true
+
+[pytest]
+install_from_resolve = "python-default"
