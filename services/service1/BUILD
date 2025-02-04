@@ -6,6 +6,12 @@ python_sources(
     ]
 )
 
+python_tests(
+    name="tests",
+    sources=["tests/**/*.py"],
+    dependencies=[":service1"]
+)
+
 pex_binary(
     name="binary",
     entry_point="service1.main",
